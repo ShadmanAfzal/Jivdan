@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'Views/HomePage.dart';
 
@@ -11,6 +12,7 @@ void main() {
       statusBarIconBrightness: Brightness.dark,
     ),
   );
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Jivandan',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.purple,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       home: HomePage(),

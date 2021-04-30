@@ -1,31 +1,25 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:jivandaan/Model/servicesModel.dart';
 
 class APIServices {
-  final Dio dio = Dio();
-  Future<List<Hospital>> getBeds() async {
-    Response res = await dio.get(
-        "https://life-api.coronasafe.network/data/hospital_clinic_centre.json");
-    final List<Hospital> hospitalList = [];
-    for (var i in res.data['data']) {
-      print(i);
-      try {
-        hospitalList.add(Hospital(
-            i['availability'] ?? "None",
-            i['comment'] ?? "None",
-            DateTime.parse(i['createdTime']).toLocal(),
-            i['district'] ?? "None",
-            i['email1'] ?? "None",
-            i['phone1'] ?? 0,
-            DateTime.parse(i['lastVerifiedOn']).toLocal(),
-            i['name'] ?? "None",
-            i['state'] ?? "None",
-            i['pointOfContact'] ?? "None",
-            i['verificationStatus'] ?? "None",
-            i['verifiedBy'] ?? "None",
-            i['totalBedsAvailable'].toString() ?? "No information"));
-      } catch (e) {}
-    }
-    return hospitalList;
+  getBeds(String type, String state) async {
+    print(
+      {
+        "state": state,
+        "requirement": type,
+      },
+    );
+    print("hello");
+    Response res = await Dio().post(
+      "https://Twitter.devilunknown.repl.co",
+      data: {
+        "state": state,
+        "requirement": type,
+      },
+    );
+    // print(res.data);
+    print((json.decode(res.data))['data'].length);
+    return (json.decode(res.data))['data'];
   }
 }
