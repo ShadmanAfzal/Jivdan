@@ -69,7 +69,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
+                SelectableText(
                   "Jivandan",
                   style: GoogleFonts.poppins(
                     fontSize: 16.5,
@@ -89,7 +89,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       color: Color(0xffAD87FF),
                     ),
                     SizedBox(width: 5),
-                    Text(
+                    SelectableText(
                       "Github",
                       style: GoogleFonts.poppins(
                         fontSize: 15.5,
@@ -112,7 +112,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       color: Color(0xffAD87FF),
                     ),
                     SizedBox(width: 5),
-                    Text(
+                    SelectableText(
                       "Donate",
                       style: GoogleFonts.poppins(
                         fontSize: 15.5,
@@ -135,7 +135,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       color: Color(0xffAD87FF),
                     ),
                     SizedBox(width: 10),
-                    Text(
+                    SelectableText(
                       "Contribute",
                       style: GoogleFonts.poppins(
                         fontSize: 15.5,
@@ -163,7 +163,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
+                    SelectableText(
                       widget.state,
                       style: TextStyle(
                         fontSize: 24,
@@ -227,7 +227,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         SizedBox(
                           width: isSelected[0] ? 5 : 0,
                         ),
-                        Text(
+                        SelectableText(
                           "Oxygen",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -279,7 +279,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         SizedBox(
                           width: isSelected[1] ? 5 : 0,
                         ),
-                        Text(
+                        SelectableText(
                           "Hospital Beds",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -331,7 +331,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         SizedBox(
                           width: isSelected[2] ? 5 : 0,
                         ),
-                        Text(
+                        SelectableText(
                           "Medicine",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -384,7 +384,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         SizedBox(
                           width: isSelected[3] ? 5 : 0,
                         ),
-                        Text(
+                        SelectableText(
                           "Ambulance",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -419,7 +419,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(
+            SelectableText(
               "Tags",
               style: GoogleFonts.poppins(
                   fontSize: 22,
@@ -457,7 +457,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       size: 18,
                     ),
                     SizedBox(width: 5),
-                    Text(
+                    SelectableText(
                       "Verified",
                       style: TextStyle(
                         fontSize: 14,
@@ -502,7 +502,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       size: 18,
                     ),
                     SizedBox(width: 5),
-                    Text(
+                    SelectableText(
                       "Not Available",
                       style: TextStyle(
                         fontSize: 14,
@@ -545,7 +545,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                       size: 18,
                     ),
                     SizedBox(width: 5),
-                    Text(
+                    SelectableText(
                       "Not Verified",
                       style: TextStyle(
                         fontSize: 14,
@@ -597,7 +597,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    SelectableText(
                                       data[index]['name'] ?? "None",
                                       style: GoogleFonts.poppins(
                                         fontSize: 18,
@@ -612,7 +612,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "${data[index]['city'] ?? ""} | ${data[index]['state'] ?? widget.state}",
                                           style: GoogleFonts.poppins(
                                             fontSize: 15,
@@ -629,7 +629,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                             SizedBox(
                                               height: 20,
                                             ),
-                                            Text(
+                                            SelectableText(
                                               data[index]['phone'].toString(),
                                               style: GoogleFonts.poppins(
                                                 fontSize: 16,
@@ -650,7 +650,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Details",
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
@@ -662,7 +662,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${data[index]['details'] ?? "None"}",
                                             style: GoogleFonts.poppins(
                                               fontSize: 15,
@@ -680,7 +680,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Last Verified",
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
@@ -692,7 +692,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${data[index]['last_verified_at'] != null ? DateFormat("hh:mm a dd MMM yy").format(DateTime.parse(data[index]['last_verified_at'])) : "None"}",
                                             style: GoogleFonts.poppins(
                                               fontSize: 15,
@@ -710,7 +710,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Last Updated",
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
@@ -722,7 +722,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${DateFormat("hh:mm a dd MMM yy").format(DateTime.parse(data[index]['updated_at']))}",
                                             style: GoogleFonts.poppins(
                                               fontSize: 15,
@@ -774,7 +774,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text(
+                                                SelectableText(
                                                   "${data[index]['availability']}",
                                                   style: GoogleFonts.poppins(
                                                     fontSize: 13.5,

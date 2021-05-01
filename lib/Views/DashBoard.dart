@@ -96,7 +96,7 @@ class _DashBoardState extends State<DashBoard> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 100),
                               child: Text(
-                                "Verified Crowd Sourced Emergency Services Directory and more info about the project or how to use",
+                                "A small initiative to provide a helping hand in these difficult times.",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15, color: CustomColor.textColor),
@@ -106,7 +106,7 @@ class _DashBoardState extends State<DashBoard> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 400),
                               child: Text(
-                                "Verified Crowd Sourced Emergency Services Directory and more info about the project or how to use",
+                                "A small initiative to provide a helping hand in these difficult times.",
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     fontSize: 15, color: CustomColor.textColor),

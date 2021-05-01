@@ -88,7 +88,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    "Verified Crowd Sourced Emergency Services Directory and more info about the project or how to use",
+                    "A small initiative to provide a helping hand in these difficult times.",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                         fontSize: 15, color: CustomColor.textColor),
@@ -356,7 +356,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
               Navigator.of(context).push(PageRouteBuilder(
                 transitionDuration: Duration(seconds: 0),
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    ServicesScreen(
+                    Details(
                   service: service,
                   state: searchController.text,
                 ),

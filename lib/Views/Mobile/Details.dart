@@ -54,8 +54,10 @@ class _DetailsState extends State<Details> {
           color: CustomColor.textColor,
         ),
         elevation: 5,
-        title: Text(
+        title: SelectableText(
           "Jivandan",
+          toolbarOptions: ToolbarOptions(
+              copy: true, selectAll: true, cut: false, paste: false),
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -75,8 +77,10 @@ class _DetailsState extends State<Details> {
                 SizedBox(
                   height: 30,
                 ),
-                Text(
+                SelectableText(
                   widget.state ?? "",
+                  toolbarOptions: ToolbarOptions(
+                      copy: true, selectAll: true, cut: false, paste: false),
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -126,8 +130,13 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             "Oxygen",
+                            toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                                cut: false,
+                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -167,8 +176,13 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             "Hospital Beds",
+                            toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                                cut: false,
+                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -208,8 +222,13 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             "Medicine",
+                            toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                                cut: false,
+                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -249,8 +268,13 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             "Ambulance",
+                            toolbarOptions: ToolbarOptions(
+                                copy: true,
+                                selectAll: true,
+                                cut: false,
+                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -285,7 +309,7 @@ class _DetailsState extends State<Details> {
   //       child: Column(
   //         mainAxisAlignment: MainAxisAlignment.spaceAround,
   //         children: [
-  //           Text(
+  //           SelectableText(
   //             "Tags",
   //             style: GoogleFonts.poppins(
   //                 fontSize: 22,
@@ -323,7 +347,7 @@ class _DetailsState extends State<Details> {
   //                     size: 18,
   //                   ),
   //                   SizedBox(width: 5),
-  //                   Text(
+  //                   SelectableText(
   //                     "Verified",
   //                     style: TextStyle(
   //                       fontSize: 14,
@@ -368,7 +392,7 @@ class _DetailsState extends State<Details> {
   //                     size: 18,
   //                   ),
   //                   SizedBox(width: 5),
-  //                   Text(
+  //                   SelectableText(
   //                     "Not Available",
   //                     style: TextStyle(
   //                       fontSize: 14,
@@ -411,7 +435,7 @@ class _DetailsState extends State<Details> {
   //                     size: 18,
   //                   ),
   //                   SizedBox(width: 5),
-  //                   Text(
+  //                   SelectableText(
   //                     "Not Verified",
   //                     style: TextStyle(
   //                       fontSize: 14,
@@ -464,11 +488,31 @@ class _DetailsState extends State<Details> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    SelectableText(
                                       data[index]['name'] ?? "None",
+                                      toolbarOptions: ToolbarOptions(
+                                          copy: true,
+                                          selectAll: true,
+                                          cut: false,
+                                          paste: false),
                                       style: GoogleFonts.poppins(
                                         fontSize: 17,
                                         fontWeight: FontWeight.w500,
+                                        color: CustomColor.textColor,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SelectableText(
+                                      "${data[index]['city'] ?? ""} | ${data[index]['state'] ?? widget.state}",
+                                      toolbarOptions: ToolbarOptions(
+                                          copy: true,
+                                          selectAll: true,
+                                          cut: false,
+                                          paste: false),
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 15,
                                         color: CustomColor.textColor,
                                       ),
                                     ),
@@ -484,8 +528,13 @@ class _DetailsState extends State<Details> {
                                       SizedBox(
                                         height: 20,
                                       ),
-                                      Text(
+                                      SelectableText(
                                         data[index]['phone'].toString(),
+                                        toolbarOptions: ToolbarOptions(
+                                            copy: true,
+                                            selectAll: true,
+                                            cut: false,
+                                            paste: false),
                                         style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           color: CustomColor.textColor,
@@ -499,8 +548,13 @@ class _DetailsState extends State<Details> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Details",
+                                          toolbarOptions: ToolbarOptions(
+                                              copy: true,
+                                              selectAll: true,
+                                              cut: false,
+                                              paste: false),
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -511,8 +565,13 @@ class _DetailsState extends State<Details> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${data[index]['details'] ?? "None"}",
+                                            toolbarOptions: ToolbarOptions(
+                                                copy: true,
+                                                selectAll: true,
+                                                cut: false,
+                                                paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               // fontWeight: FontWeight.w500,
@@ -529,8 +588,13 @@ class _DetailsState extends State<Details> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Last Verified",
+                                          toolbarOptions: ToolbarOptions(
+                                              copy: true,
+                                              selectAll: true,
+                                              cut: false,
+                                              paste: false),
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -541,8 +605,13 @@ class _DetailsState extends State<Details> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${data[index]['last_verified_at'] != null ? DateFormat("hh:mm a dd MMM yy").format(DateTime.parse(data[index]['last_verified_at'])) : "None"}",
+                                            toolbarOptions: ToolbarOptions(
+                                                copy: true,
+                                                selectAll: true,
+                                                cut: false,
+                                                paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               // fontWeight: FontWeight.w500,
@@ -559,8 +628,13 @@ class _DetailsState extends State<Details> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        SelectableText(
                                           "Last Updated",
+                                          toolbarOptions: ToolbarOptions(
+                                              copy: true,
+                                              selectAll: true,
+                                              cut: false,
+                                              paste: false),
                                           style: GoogleFonts.poppins(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w500,
@@ -571,8 +645,13 @@ class _DetailsState extends State<Details> {
                                           width: 7,
                                         ),
                                         Flexible(
-                                          child: Text(
+                                          child: SelectableText(
                                             "${DateFormat("hh:mm a dd MMM yy").format(DateTime.parse(data[index]['updated_at']))}",
+                                            toolbarOptions: ToolbarOptions(
+                                                copy: true,
+                                                selectAll: true,
+                                                cut: false,
+                                                paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               // fontWeight: FontWeight.w500,
@@ -597,8 +676,14 @@ class _DetailsState extends State<Details> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                Text(
+                                                SelectableText(
                                                   "Oxygen",
+                                                  toolbarOptions:
+                                                      ToolbarOptions(
+                                                          copy: true,
+                                                          selectAll: true,
+                                                          cut: false,
+                                                          paste: false),
                                                   style: GoogleFonts.poppins(
                                                     fontSize: 13.5,
                                                     fontWeight: FontWeight.w500,
@@ -629,8 +714,14 @@ class _DetailsState extends State<Details> {
                                                 SizedBox(
                                                   width: 5,
                                                 ),
-                                                Text(
+                                                SelectableText(
                                                   "Verified",
+                                                  toolbarOptions:
+                                                      ToolbarOptions(
+                                                          copy: true,
+                                                          selectAll: true,
+                                                          cut: false,
+                                                          paste: false),
                                                   style: GoogleFonts.poppins(
                                                     fontSize: 13.5,
                                                     fontWeight: FontWeight.w500,
