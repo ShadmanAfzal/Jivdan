@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivandaan/Config/colors.dart';
-
-import '../Services.dart';
-import 'Details.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class DashBoardMobile extends StatefulWidget {
   @override
@@ -45,6 +43,19 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 5,
+        title: Text(
+          "Jivandan",
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.grey.shade700,
+          ),
+        ),
+        backgroundColor: CustomColor.baseColor,
+      ),
       body: Scrollbar(
         isAlwaysShown: true,
         child: SingleChildScrollView(
@@ -290,7 +301,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     );
   }
 
-  searchBar(context) {
+  searchBar(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -353,14 +364,15 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                 service = "ambulance";
               }
               print(service);
-              Navigator.of(context).push(PageRouteBuilder(
-                transitionDuration: Duration(seconds: 0),
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    Details(
-                  service: service,
-                  state: searchController.text,
+              context.vxNav.push(
+                Uri(
+                  path: '/search',
+                  queryParameters: {
+                    "state": searchController.text.trim(),
+                    "service": service
+                  },
                 ),
-              ));
+              );
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45),
@@ -398,7 +410,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     );
   }
 
-  card(context) {
+  card(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(6.0),
       child: Card(
@@ -441,14 +453,12 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                     if (index == 3) {
                       service = "ambulance";
                     }
-                    Navigator.of(context).push(PageRouteBuilder(
-                      transitionDuration: Duration(seconds: 0),
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          Details(
-                        service: service,
-                        state: city,
+                    context.vxNav.push(
+                      Uri(
+                        path: '/search',
+                        queryParameters: {"state": city, "service": service},
                       ),
-                    ));
+                    );
                   },
                   child: Center(
                     child: Text(

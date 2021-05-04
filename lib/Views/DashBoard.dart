@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivandaan/Config/colors.dart';
 import 'package:jivandaan/Views/Services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -299,7 +300,7 @@ class _DashBoardState extends State<DashBoard> {
     });
   }
 
-  searchBar(context, width) {
+  searchBar(BuildContext context, width) {
     return Padding(
       padding: (width > 700 && width < 1200)
           ? EdgeInsets.symmetric(
@@ -366,13 +367,20 @@ class _DashBoardState extends State<DashBoard> {
                 service = "ambulance";
               }
               print(service);
-              Navigator.of(context).push(PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    ServicesScreen(
-                  service: service,
-                  state: searchController.text.trim(),
+              context.vxNav.push(
+                Uri(
+                  path: '/search',
+                  queryParameters: {
+                    "state": searchController.text.trim(),
+                    "service": service
+                  },
                 ),
-              ));
+              );
+
+              // Navigator.of(context).pushNamed('/search', arguments: {
+              //   "service": service,
+              //   "state": searchController.text.trim()
+              // });
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45),
@@ -410,7 +418,7 @@ class _DashBoardState extends State<DashBoard> {
     );
   }
 
-  card(context, width) {
+  card(BuildContext context, width) {
     return Card(
       color: Color(0xffEFF0F6),
       shape: RoundedRectangleBorder(
@@ -452,14 +460,12 @@ class _DashBoardState extends State<DashBoard> {
                   if (index == 3) {
                     service = "ambulance";
                   }
-                  Navigator.of(context).push(PageRouteBuilder(
-                    transitionDuration: Duration(seconds: 0),
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        ServicesScreen(
-                      service: service,
-                      state: city,
+                  context.vxNav.push(
+                    Uri(
+                      path: '/search',
+                      queryParameters: {"state": city, "service": service},
                     ),
-                  ));
+                  );
                 },
                 child: Text(
                   city,

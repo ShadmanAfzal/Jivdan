@@ -22,138 +22,114 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        print(constraints);
-        if (constraints.maxWidth > 700) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              elevation: 5,
-              backgroundColor: CustomColor.baseColor,
-              title: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Image.asset(
-                          'jivaandanlogo.png',
-                          height: 35,
-                        ),
-                      ),
-                    ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 5,
+        backgroundColor: CustomColor.baseColor,
+        title: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: Image.asset(
+                    'jivaandanlogo.png',
+                    height: 35,
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Jivandan",
-                    style: GoogleFonts.poppins(
-                      fontSize: 16.5,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade700,
-                    ),
-                  ),
-                ],
+                ),
               ),
-              actions: [
-                Center(
-                  child: Row(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.github,
-                        size: 18,
-                        color: Color(0xffAD87FF),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        "Github",
-                        style: GoogleFonts.poppins(
-                          fontSize: 15.5,
-                          // fontWeight: FontWeight.w500,
-                          color: CustomColor.textColor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              "Jivandan",
+              style: GoogleFonts.poppins(
+                fontSize: 16.5,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey.shade700,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Center(
+            child: Row(
+              children: [
+                Icon(
+                  FontAwesomeIcons.github,
+                  size: 18,
+                  color: Color(0xffAD87FF),
+                ),
+                SizedBox(width: 5),
+                Text(
+                  "Github",
+                  style: GoogleFonts.poppins(
+                    fontSize: 15.5,
+                    // fontWeight: FontWeight.w500,
+                    color: CustomColor.textColor,
 
-                          // color: Colors.black,
-                        ),
-                      ),
-                    ],
+                    // color: Colors.black,
                   ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Center(
-                  child: Row(
-                    children: [
-                      Icon(
-                        CupertinoIcons.heart_fill,
-                        size: 17,
-                        color: Color(0xffAD87FF),
-                      ),
-                      SizedBox(width: 5),
-                      Text(
-                        "Donate",
-                        style: TextStyle(
-                          fontSize: 15.5,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColor.textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Center(
-                  child: Row(
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.users,
-                        size: 18,
-                        color: Color(0xffAD87FF),
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "Contribute",
-                        style: GoogleFonts.poppins(
-                          fontSize: 15.5,
-                          fontWeight: FontWeight.w500,
-                          color: CustomColor.textColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: 15,
                 ),
               ],
             ),
-            body: DashBoard(),
-          );
-        } else {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              elevation: 5,
-              title: Text(
-                "Jivandan",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey.shade700,
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Center(
+            child: Row(
+              children: [
+                Icon(
+                  CupertinoIcons.heart_fill,
+                  size: 17,
+                  color: Color(0xffAD87FF),
                 ),
-              ),
-              backgroundColor: CustomColor.baseColor,
+                SizedBox(width: 5),
+                Text(
+                  "Donate",
+                  style: TextStyle(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColor.textColor,
+                  ),
+                ),
+              ],
             ),
-            body: DashBoardMobile(),
-          );
-        }
-      },
+          ),
+          SizedBox(
+            width: 15,
+          ),
+          Center(
+            child: Row(
+              children: [
+                Icon(
+                  FontAwesomeIcons.users,
+                  size: 18,
+                  color: Color(0xffAD87FF),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  "Contribute",
+                  style: GoogleFonts.poppins(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w500,
+                    color: CustomColor.textColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            width: 15,
+          ),
+        ],
+      ),
+      body: DashBoard(),
     );
   }
 }

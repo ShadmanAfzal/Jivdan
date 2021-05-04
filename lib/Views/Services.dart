@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
 import 'package:jivandaan/Services/APIServices.dart';
-
 import 'Mobile/Details.dart';
 
 class ServicesScreen extends StatefulWidget {
@@ -26,16 +25,16 @@ class _ServicesScreenState extends State<ServicesScreen> {
   List data = [];
   @override
   void initState() {
-    getData();
+    getData(widget.service, widget.state);
     super.initState();
   }
 
-  getData() async {
+  getData(service, state) async {
     try {
       setState(() {
         isloading = true;
       });
-      data = await APIServices().getBeds(widget.service, widget.state);
+      data = await APIServices().getBeds(service, state);
       print(data);
     } catch (e) {
       print(e);
@@ -171,9 +170,9 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         color: CustomColor.textColor,
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
+                    SizedBox(height: 30),
+                    selectServiceTab(context),
+                    SizedBox(height: 40),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -208,26 +207,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     isSelected[1] = false;
                     isSelected[2] = false;
                     isSelected[3] = false;
+                    getData("oxygen", widget.state);
                   });
                 },
                 child: Container(
                   height: 35,
-                  width: !isSelected[0] ? 100 : 120,
+                  width: 100,
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        isSelected[0]
-                            ? SvgPicture.asset(
-                                'oxygen-cylinder.svg',
-                                color: Colors.white,
-                                width: 25,
-                              )
-                            : Container(),
-                        SizedBox(
-                          width: isSelected[0] ? 5 : 0,
-                        ),
-                        SelectableText(
+                        Text(
                           "Oxygen",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -260,26 +250,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     isSelected[0] = false;
                     isSelected[2] = false;
                     isSelected[3] = false;
+                    getData("hospital", widget.state);
                   });
                 },
                 child: Container(
                   height: 35,
-                  width: !isSelected[1] ? 120 : 150,
+                  width: 120,
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        isSelected[1]
-                            ? SvgPicture.asset(
-                                'bed-hospital.svg',
-                                color: Colors.white,
-                                width: 25,
-                              )
-                            : Container(),
-                        SizedBox(
-                          width: isSelected[1] ? 5 : 0,
-                        ),
-                        SelectableText(
+                        Text(
                           "Hospital Beds",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -312,26 +293,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     isSelected[1] = false;
                     isSelected[0] = false;
                     isSelected[3] = false;
+                    getData("medicine", widget.state);
                   });
                 },
                 child: Container(
                   height: 35,
-                  width: !isSelected[2] ? 100 : 120,
+                  width: 100,
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        isSelected[2]
-                            ? SvgPicture.asset(
-                                'drug.svg',
-                                color: Colors.white,
-                                width: 25,
-                              )
-                            : Container(),
-                        SizedBox(
-                          width: isSelected[2] ? 5 : 0,
-                        ),
-                        SelectableText(
+                        Text(
                           "Medicine",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -364,27 +336,17 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     isSelected[1] = false;
                     isSelected[0] = false;
                     isSelected[2] = false;
+                    getData("ambulance", widget.state);
                   });
-                  print("delete");
                 },
                 child: Container(
                   height: 35,
-                  width: !isSelected[3] ? 110 : 150,
+                  width: 110,
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        isSelected[3]
-                            ? SvgPicture.asset(
-                                'ambulance.svg',
-                                color: Colors.white,
-                                height: 30,
-                              )
-                            : Container(),
-                        SizedBox(
-                          width: isSelected[3] ? 5 : 0,
-                        ),
-                        SelectableText(
+                        Text(
                           "Ambulance",
                           style: GoogleFonts.poppins(
                             fontSize: 14,

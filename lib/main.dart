@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jivandaan/Views/Services.dart';
 import 'package:url_strategy/url_strategy.dart';
-
+import 'package:velocity_x/velocity_x.dart';
 import 'Views/HomePage.dart';
+import 'Views/Mobile/DashBoard.dart';
+import 'Views/Mobile/Details.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -19,14 +22,32 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Jivandan',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        textTheme: GoogleFonts.poppinsTextTheme(),
-      ),
-      home: HomePage(),
-    );
+    return LayoutBuilder(builder: (context, size) {
+      return MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Jivandaan',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+          textTheme: GoogleFonts.poppinsTextTheme(),
+        ),
+        routeInformationParser: VxInformationParser(),
+        routerDelegate: VxNavigator(routes: {
+          '/': (context, _) => MaterialPage(
+                child: size.maxWidth > 700 ? HomePage() : DashBoardMobile(),
+              ),
+          '/search': (Uri uri, param) => size.maxWidth > 700
+              ? MaterialPage(
+                  child: ServicesScreen(
+                  service: uri.queryParameters['service'],
+                  state: uri.queryParameters['state'],
+                ))
+              : MaterialPage(
+                  child: Details(
+                  service: uri.queryParameters['service'],
+                  state: uri.queryParameters['state'],
+                )),
+        }),
+      );
+    });
   }
 }

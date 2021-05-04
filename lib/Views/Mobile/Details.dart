@@ -26,17 +26,17 @@ class _DetailsState extends State<Details> {
   List data = [];
   @override
   void initState() {
-    getData();
+    getData(widget.service, widget.state);
     super.initState();
   }
 
-  getData() async {
+  getData(service, state) async {
     print(widget.state);
     try {
       setState(() {
         isloading = true;
       });
-      data = await APIServices().getBeds(widget.service, widget.state);
+      data = await APIServices().getBeds(service, state);
     } catch (e) {
       print(e);
     }
@@ -88,7 +88,11 @@ class _DetailsState extends State<Details> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
+                ),
+                selectServiceTab(context),
+                SizedBox(
+                  height: 10,
                 ),
                 content(context),
               ],
@@ -114,6 +118,7 @@ class _DetailsState extends State<Details> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MouseRegion(
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -121,6 +126,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[2] = false;
                       isSelected[3] = false;
+                      getData("oxygen", widget.state);
                     });
                   },
                   child: Container(
@@ -130,13 +136,8 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SelectableText(
+                          Text(
                             "Oxygen",
-                            toolbarOptions: ToolbarOptions(
-                                copy: true,
-                                selectAll: true,
-                                cut: false,
-                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -160,6 +161,7 @@ class _DetailsState extends State<Details> {
                 width: 15,
               ),
               MouseRegion(
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -167,6 +169,7 @@ class _DetailsState extends State<Details> {
                       isSelected[0] = false;
                       isSelected[2] = false;
                       isSelected[3] = false;
+                      getData("hospital", widget.state);
                     });
                   },
                   child: Container(
@@ -176,13 +179,8 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SelectableText(
+                          Text(
                             "Hospital Beds",
-                            toolbarOptions: ToolbarOptions(
-                                copy: true,
-                                selectAll: true,
-                                cut: false,
-                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -206,6 +204,7 @@ class _DetailsState extends State<Details> {
                 width: 15,
               ),
               MouseRegion(
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -213,6 +212,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[0] = false;
                       isSelected[3] = false;
+                      getData("medicine", widget.state);
                     });
                   },
                   child: Container(
@@ -222,13 +222,8 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SelectableText(
+                          Text(
                             "Medicine",
-                            toolbarOptions: ToolbarOptions(
-                                copy: true,
-                                selectAll: true,
-                                cut: false,
-                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -252,6 +247,7 @@ class _DetailsState extends State<Details> {
                 width: 15,
               ),
               MouseRegion(
+                cursor: SystemMouseCursors.click,
                 child: GestureDetector(
                   onTap: () {
                     setState(() {
@@ -259,6 +255,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[0] = false;
                       isSelected[2] = false;
+                      getData("ambulance", widget.state);
                     });
                   },
                   child: Container(
@@ -268,13 +265,8 @@ class _DetailsState extends State<Details> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SelectableText(
+                          Text(
                             "Ambulance",
-                            toolbarOptions: ToolbarOptions(
-                                copy: true,
-                                selectAll: true,
-                                cut: false,
-                                paste: false),
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -287,10 +279,11 @@ class _DetailsState extends State<Details> {
                       ),
                     ),
                     decoration: BoxDecoration(
-                        color: !isSelected[3]
-                            ? Color(0xffEFF0F6)
-                            : Color(0xffAD87FF),
-                        borderRadius: BorderRadius.circular(20)),
+                      color: !isSelected[3]
+                          ? Color(0xffEFF0F6)
+                          : Color(0xffAD87FF),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
               )
