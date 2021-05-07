@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
 import 'package:jivandaan/Services/APIServices.dart';
+import 'package:jivandaan/Services/SearchCityByState.dart';
 
 class Details extends StatefulWidget {
   final String service;
@@ -24,25 +25,57 @@ class _DetailsState extends State<Details> {
   List list = [];
   bool isloading = false;
   List data = [];
+  String city = "";
+  bool selected = false;
+  String service = "oxygen";
   @override
   void initState() {
     getData(widget.service, widget.state);
     super.initState();
   }
 
-  getData(service, state) async {
-    print(widget.state);
+  getDataByCity(String city) async {
     try {
       setState(() {
         isloading = true;
       });
-      data = await APIServices().getBeds(service, state);
+      data = await APIServices().getRecordByCity(service, widget.state, city);
     } catch (e) {
       print(e);
     }
     setState(() {
       isloading = false;
     });
+  }
+
+  getData(service, state) async {
+    if (selected == false) {
+      city = SearchCity().selectCity(widget.state)[0];
+      print(widget.state);
+      try {
+        setState(() {
+          isloading = true;
+        });
+        data = await APIServices().getBeds(service, state);
+      } catch (e) {
+        print(e);
+      }
+      setState(() {
+        isloading = false;
+      });
+    } else {
+      try {
+        setState(() {
+          isloading = true;
+        });
+        data = await APIServices().getRecordByCity(service, widget.state, city);
+      } catch (e) {
+        print(e);
+      }
+      setState(() {
+        isloading = false;
+      });
+    }
   }
 
   @override
@@ -90,7 +123,14 @@ class _DetailsState extends State<Details> {
                 SizedBox(
                   height: 10,
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 selectServiceTab(context),
+                SizedBox(
+                  height: 10,
+                ),
+                dropDownSelector(context),
                 SizedBox(
                   height: 10,
                 ),
@@ -126,6 +166,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[2] = false;
                       isSelected[3] = false;
+                      service = "oxygen";
                       getData("oxygen", widget.state);
                     });
                   },
@@ -169,6 +210,7 @@ class _DetailsState extends State<Details> {
                       isSelected[0] = false;
                       isSelected[2] = false;
                       isSelected[3] = false;
+                      service = "hospital";
                       getData("hospital", widget.state);
                     });
                   },
@@ -212,6 +254,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[0] = false;
                       isSelected[3] = false;
+                      service = "medicine";
                       getData("medicine", widget.state);
                     });
                   },
@@ -255,6 +298,7 @@ class _DetailsState extends State<Details> {
                       isSelected[1] = false;
                       isSelected[0] = false;
                       isSelected[2] = false;
+                      service = "ambulance";
                       getData("ambulance", widget.state);
                     });
                   },
@@ -670,7 +714,8 @@ class _DetailsState extends State<Details> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 SelectableText(
-                                                  "Oxygen",
+                                                  service[0].toUpperCase() +
+                                                      service.substring(1),
                                                   toolbarOptions:
                                                       ToolbarOptions(
                                                           copy: true,
@@ -762,6 +807,47 @@ class _DetailsState extends State<Details> {
                 ),
               ),
             ),
+    );
+  }
+
+  Widget dropDownSelector(context) {
+    return Container(
+      // decoration: BoxDecoration(
+      //   // borderRadius: BorderRadius.circular(6),
+      //   // color: Color(0xffAD87FF),
+      // ),
+      child: DropdownButton(
+        elevation: 0,
+        hint: Text(
+          "Select your city",
+          style: GoogleFonts.poppins(
+            fontSize: 15.5,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        underline: Container(),
+        value: selected ? city : null,
+        items: SearchCity().selectCity(widget.state).map((String value) {
+          return new DropdownMenuItem<String>(
+            value: value,
+            child: new Text(value,
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  // fontWeight: FontWeight.w500,
+                  color: CustomColor.textColor,
+                )),
+          );
+        }).toList(),
+        onChanged: (val) {
+          setState(() {
+            selected = true;
+            city = val;
+          });
+          getDataByCity(
+            city,
+          );
+        },
+      ),
     );
   }
 }

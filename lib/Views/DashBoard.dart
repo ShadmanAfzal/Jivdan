@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivandaan/Config/colors.dart';
-import 'package:jivandaan/Views/Services.dart';
+import 'package:jivandaan/Services/APIServices.dart';
+import 'package:jivandaan/Services/SearchCityByState.dart';
+import 'package:jivandaan/Views/Details.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../ActiveCases.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -20,7 +24,6 @@ class _DashBoardState extends State<DashBoard> {
     'Arunachal Pradesh',
     'Assam',
     'Bihar',
-    'Chandigarh',
     'Chhattisgarh',
     'Delhi NCR',
     'Goa',
@@ -30,6 +33,7 @@ class _DashBoardState extends State<DashBoard> {
     'Jammu and Kashmir',
     'Jharkhand',
     'Karnataka',
+    'Ladakh',
     'Kerala',
     'Maharashtra',
     'Punjab',
@@ -41,6 +45,21 @@ class _DashBoardState extends State<DashBoard> {
     'West Bengal'
   ];
   final TextEditingController searchController = TextEditingController();
+
+  final Map cases = {};
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    cases.addAll(await APIServices().getTotalCases());
+    setState(() {});
+    print(cases);
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -289,6 +308,25 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                       searchBar(context, width),
                       card(context, width),
+                      activeCases(context, cases),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        color: Color(0xffEFF0F6),
+                        width: MediaQuery.of(context).size.width,
+                        height: 45,
+                        child: Center(
+                          child: Text(
+                            "DSC Adgitm",
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: CustomColor.textColor,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   )
                 ],
@@ -372,15 +410,10 @@ class _DashBoardState extends State<DashBoard> {
                   path: '/search',
                   queryParameters: {
                     "state": searchController.text.trim(),
-                    "service": service
+                    "service": service,
                   },
                 ),
               );
-
-              // Navigator.of(context).pushNamed('/search', arguments: {
-              //   "service": service,
-              //   "state": searchController.text.trim()
-              // });
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(45),
@@ -412,7 +445,7 @@ class _DashBoardState extends State<DashBoard> {
                       ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -463,7 +496,10 @@ class _DashBoardState extends State<DashBoard> {
                   context.vxNav.push(
                     Uri(
                       path: '/search',
-                      queryParameters: {"state": city, "service": service},
+                      queryParameters: {
+                        "state": city,
+                        "service": service,
+                      },
                     ),
                   );
                 },

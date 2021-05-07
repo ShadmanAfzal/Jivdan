@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivandaan/Config/colors.dart';
+import 'package:jivandaan/Services/APIServices.dart';
 import 'package:jivandaan/Views/Mobile/DashBoard.dart';
+import 'dart:html' as html;
 
 import 'DashBoard.dart';
 
@@ -19,6 +22,20 @@ class _HomePageState extends State<HomePage> {
     "Ambulance",
     "Medicines"
   ];
+
+  final Map cases = {};
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    cases.addAll(await APIServices().getTotalCases());
+    setState(() {});
+    print(cases);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,71 +74,94 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           Center(
-            child: Row(
-              children: [
-                Icon(
-                  FontAwesomeIcons.github,
-                  size: 18,
-                  color: Color(0xffAD87FF),
-                ),
-                SizedBox(width: 5),
-                Text(
-                  "Github",
-                  style: GoogleFonts.poppins(
-                    fontSize: 15.5,
-                    // fontWeight: FontWeight.w500,
-                    color: CustomColor.textColor,
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => html.window.open(
+                    "https://github.com/orgs/jivaandaan/dashboard", "new tab"),
+                child: Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.github,
+                      size: 18,
+                      color: Color(0xffAD87FF),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "Github",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15.5,
+                        // fontWeight: FontWeight.w500,
+                        color: CustomColor.textColor,
 
-                    // color: Colors.black,
-                  ),
+                        // color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
           SizedBox(
             width: 15,
           ),
           Center(
-            child: Row(
-              children: [
-                Icon(
-                  CupertinoIcons.heart_fill,
-                  size: 17,
-                  color: Color(0xffAD87FF),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => html.window.open(
+                    "https://docs.google.com/spreadsheets/d/12-0vEXzVTdVEi85snlFNoElym8hRW3ABvrbgxN0VjV8/edit#gid=0",
+                    "new tab"),
+                child: Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.heart_fill,
+                      size: 17,
+                      color: Color(0xffAD87FF),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "Donate",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15.5,
+                        // fontWeight: FontWeight.w500,
+                        color: CustomColor.textColor,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 5),
-                Text(
-                  "Donate",
-                  style: TextStyle(
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w500,
-                    color: CustomColor.textColor,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           SizedBox(
             width: 15,
           ),
           Center(
-            child: Row(
-              children: [
-                Icon(
-                  FontAwesomeIcons.users,
-                  size: 18,
-                  color: Color(0xffAD87FF),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => html.window.open(
+                    "https://docs.google.com/forms/d/e/1FAIpQLScySCYUPZG5lezcdefsUwV_bdNMC50S1v6wi3G7jKGOiA2DDA/viewform",
+                    "new tab"),
+                child: Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.users,
+                      size: 18,
+                      color: Color(0xffAD87FF),
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      "Contribute",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15.5,
+                        // fontWeight: FontWeight.w500,
+                        color: CustomColor.textColor,
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 10),
-                Text(
-                  "Contribute",
-                  style: GoogleFonts.poppins(
-                    fontSize: 15.5,
-                    fontWeight: FontWeight.w500,
-                    color: CustomColor.textColor,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
           SizedBox(

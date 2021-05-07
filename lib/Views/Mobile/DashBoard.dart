@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
+import 'package:jivandaan/Services/APIServices.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class DashBoardMobile extends StatefulWidget {
@@ -18,7 +20,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     'Arunachal Pradesh',
     'Assam',
     'Bihar',
-    'Chandigarh',
     'Chhattisgarh',
     'Delhi NCR',
     'Goa',
@@ -28,6 +29,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     'Jammu and Kashmir',
     'Jharkhand',
     'Karnataka',
+    'Ladakh',
     'Kerala',
     'Maharashtra',
     'Punjab',
@@ -39,6 +41,20 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     'West Bengal'
   ];
   final TextEditingController searchController = TextEditingController();
+
+  final Map cases = {};
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    cases.addAll(await APIServices().getTotalCases());
+    setState(() {});
+    print(cases);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -293,6 +309,25 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                   height: 10,
                 ),
                 card(context),
+                activeCases(context, cases),
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  color: Color(0xffEFF0F6),
+                  width: MediaQuery.of(context).size.width,
+                  height: 45,
+                  child: Center(
+                    child: Text(
+                      "DSC Adgitm",
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: CustomColor.textColor,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -475,5 +510,343 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
         ),
       ),
     );
+  }
+
+  Widget activeCases(context, Map data) {
+    return data.isNotEmpty
+        ? Column(
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Text(
+                "Covid-19 India",
+                style: GoogleFonts.poppins(
+                  fontSize: 25,
+                  color: CustomColor.textColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width - 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(0xffEFF0F6),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0, vertical: 20.0),
+                  child: Container(
+                    child: GridView.count(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      childAspectRatio: 1.3,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      children: [
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          color: Colors.white,
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Total Cases",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: CustomColor.textColor,
+                                        ),
+                                      ),
+                                      // Icon(
+                                      //   Icons.arrow_drop_up,
+                                      //   size: 18,
+                                      //   color: Colors.red.shade700,
+                                      // ),
+                                      // Text(
+                                      //   "+ 9.8 % ",
+                                      //   style: TextStyle(
+                                      //     fontSize: 12.5,
+                                      //     color: Colors.red.shade700,
+                                      //   ),
+                                      // )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                            locale: 'HI', decimalDigits: 0)
+                                        .format(data['confirmed'])
+                                        .replaceAll("INR", ""),
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.workSans(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.red.shade700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  // Text(
+                                  //   "+ 275,414",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: GoogleFonts.poppins(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     color: Colors.red.shade700,
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            height: 150,
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          color: Colors.white,
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Active Cases",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: CustomColor.textColor,
+                                        ),
+                                      ),
+                                      // Icon(
+                                      //   Icons.arrow_drop_up,
+                                      //   size: 18,
+                                      //   color: Colors.red.shade700,
+                                      // ),
+                                      // Text(
+                                      //   "+ 9.8 % ",
+                                      //   style: TextStyle(
+                                      //     fontSize: 12.5,
+                                      //     color: Colors.red.shade700,
+                                      //   ),
+                                      // )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                            locale: 'HI', decimalDigits: 0)
+                                        .format((data['confirmed'] -
+                                            data['deaths'] -
+                                            data['recovered']))
+                                        .replaceAll("INR", ""),
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.workSans(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.blue.shade700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  // Text(
+                                  //   "+ 275,414",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: GoogleFonts.poppins(
+                                  //     fontSize: 16,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     color: Colors.blue.shade700,
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            height: 150,
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          color: Colors.white,
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Recovered",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: CustomColor.textColor,
+                                        ),
+                                      ),
+                                      // Icon(
+                                      //   Icons.arrow_drop_up,
+                                      //   size: 40,
+                                      //   color: Colors.green.shade700,
+                                      // ),
+                                      // Text(
+                                      //   "+ 9.8 % ",
+                                      //   style: TextStyle(
+                                      //     fontSize: 14,
+                                      //     color: Colors.green.shade700,
+                                      //   ),
+                                      // )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                            locale: 'HI', decimalDigits: 0)
+                                        .format(data['recovered'])
+                                        .replaceAll("INR", ""),
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.workSans(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.green.shade700,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  // Text(
+                                  //   "+ 275,414",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: GoogleFonts.poppins(
+                                  //     fontSize: 18,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     color: Colors.green.shade700,
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            height: 150,
+                          ),
+                        ),
+                        Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          color: Colors.white,
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Deceased",
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          color: CustomColor.textColor,
+                                        ),
+                                      ),
+                                      // Icon(
+                                      //   Icons.arrow_drop_up,
+                                      //   size: 40,
+                                      //   color: Colors.red.shade700,
+                                      // ),
+                                      // Text(
+                                      //   "+ 9.8 % ",
+                                      //   style: TextStyle(
+                                      //     fontSize: 14,
+                                      //     color: Colors.red.shade700,
+                                      //   ),
+                                      // )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    NumberFormat.currency(
+                                            locale: 'HI', decimalDigits: 0)
+                                        .format(data['deaths'])
+                                        .replaceAll("INR", ""),
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.workSans(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: CustomColor.textColor,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  // Text(
+                                  //   "+ 275,414",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: GoogleFonts.poppins(
+                                  //     fontSize: 18,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     color: CustomColor.textColor,
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                            height: 150,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+        : Container();
   }
 }

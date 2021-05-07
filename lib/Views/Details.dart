@@ -7,22 +7,42 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
 import 'package:jivandaan/Services/APIServices.dart';
+import 'package:jivandaan/Services/SearchCityByState.dart';
 import 'Mobile/Details.dart';
+import 'dart:html' as html;
 
-class ServicesScreen extends StatefulWidget {
+class DetailsWeb extends StatefulWidget {
   final String state;
   final String service;
 
-  const ServicesScreen({Key key, this.state, this.service}) : super(key: key);
+  const DetailsWeb({Key key, this.state, this.service}) : super(key: key);
   @override
-  _ServicesScreenState createState() => _ServicesScreenState();
+  _DetailsWebState createState() => _DetailsWebState();
 }
 
-class _ServicesScreenState extends State<ServicesScreen> {
+class _DetailsWebState extends State<DetailsWeb> {
   List<bool> isSelected = [true, false, false, false];
   List<bool> verified = [false, false, false];
   bool isloading = false;
+  String city = "";
+  bool selected = false;
+  String service = "oxygen";
   List data = [];
+
+  getDataByCity(String city) async {
+    try {
+      setState(() {
+        isloading = true;
+      });
+      data = await APIServices().getRecordByCity(service, widget.state, city);
+    } catch (e) {
+      print(e);
+    }
+    setState(() {
+      isloading = false;
+    });
+  }
+
   @override
   void initState() {
     getData(widget.service, widget.state);
@@ -30,18 +50,33 @@ class _ServicesScreenState extends State<ServicesScreen> {
   }
 
   getData(service, state) async {
-    try {
+    if (selected == false) {
+      city = SearchCity().selectCity(widget.state)[0];
+      print(widget.state);
+      try {
+        setState(() {
+          isloading = true;
+        });
+        data = await APIServices().getBeds(service, state);
+      } catch (e) {
+        print(e);
+      }
       setState(() {
-        isloading = true;
+        isloading = false;
       });
-      data = await APIServices().getBeds(service, state);
-      print(data);
-    } catch (e) {
-      print(e);
+    } else {
+      try {
+        setState(() {
+          isloading = true;
+        });
+        data = await APIServices().getRecordByCity(service, widget.state, city);
+      } catch (e) {
+        print(e);
+      }
+      setState(() {
+        isloading = false;
+      });
     }
-    setState(() {
-      isloading = false;
-    });
   }
 
   @override
@@ -54,6 +89,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
             elevation: 5,
             iconTheme: IconThemeData(
               color: CustomColor.textColor,
+              size: 20,
             ),
             backgroundColor: Color(0xffE5E5E5),
             title: Row(
@@ -80,69 +116,95 @@ class _ServicesScreenState extends State<ServicesScreen> {
             ),
             actions: [
               Center(
-                child: Row(
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.github,
-                      size: 18,
-                      color: Color(0xffAD87FF),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => html.window.open(
+                        "https://github.com/orgs/jivaandaan/dashboard",
+                        "new tab"),
+                    child: Row(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.github,
+                          size: 18,
+                          color: Color(0xffAD87FF),
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "Github",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15.5,
+                            // fontWeight: FontWeight.w500,
+                            color: CustomColor.textColor,
+
+                            // color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 5),
-                    SelectableText(
-                      "Github",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15.5,
-                        color: CustomColor.textColor,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
                 width: 15,
               ),
               Center(
-                child: Row(
-                  children: [
-                    Icon(
-                      CupertinoIcons.heart_fill,
-                      size: 17,
-                      color: Color(0xffAD87FF),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => html.window.open(
+                        "https://docs.google.com/spreadsheets/d/12-0vEXzVTdVEi85snlFNoElym8hRW3ABvrbgxN0VjV8/edit#gid=0",
+                        "new tab"),
+                    child: Row(
+                      children: [
+                        Icon(
+                          CupertinoIcons.heart_fill,
+                          size: 17,
+                          color: Color(0xffAD87FF),
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "Donate",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15.5,
+                            // fontWeight: FontWeight.w500,
+                            color: CustomColor.textColor,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 5),
-                    SelectableText(
-                      "Donate",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15.5,
-                        fontWeight: FontWeight.w500,
-                        color: CustomColor.textColor,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
                 width: 15,
               ),
               Center(
-                child: Row(
-                  children: [
-                    Icon(
-                      FontAwesomeIcons.users,
-                      size: 18,
-                      color: Color(0xffAD87FF),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () => html.window.open(
+                        "https://docs.google.com/forms/d/e/1FAIpQLScySCYUPZG5lezcdefsUwV_bdNMC50S1v6wi3G7jKGOiA2DDA/viewform",
+                        "new tab"),
+                    child: Row(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.users,
+                          size: 18,
+                          color: Color(0xffAD87FF),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Contribute",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15.5,
+                            // fontWeight: FontWeight.w500,
+                            color: CustomColor.textColor,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 10),
-                    SelectableText(
-                      "Contribute",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15.5,
-                        fontWeight: FontWeight.w500,
-                        color: CustomColor.textColor,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -152,7 +214,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
           ),
           body: Scrollbar(
             isAlwaysShown: true,
-            // showT/rackOnHover: true,
             child: SingleChildScrollView(
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -173,6 +234,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     SizedBox(height: 30),
                     selectServiceTab(context),
                     SizedBox(height: 40),
+                    dropDownSelector(context),
+                    SizedBox(height: 40),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -190,6 +253,48 @@ class _ServicesScreenState extends State<ServicesScreen> {
         return Details();
       }
     });
+  }
+
+  Widget dropDownSelector(context) {
+    return Container(
+      // decoration: BoxDecoration(
+      //   // borderRadius: BorderRadius.circular(6),
+      //   // color: Color(0xffAD87FF),
+      // ),
+      child: DropdownButton(
+        elevation: 0,
+        hint: Text(
+          "Select your city",
+          style: GoogleFonts.poppins(
+            fontSize: 15.5,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        underline: Container(),
+        value: selected ? city : null,
+        items: SearchCity().selectCity(widget.state).map((String value) {
+          return new DropdownMenuItem<String>(
+            value: value,
+            child: new Text(value,
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  // fontWeight: FontWeight.w500,
+                  color: CustomColor.textColor,
+                )),
+          );
+        }).toList(),
+        onChanged: (val) {
+          setState(() {
+            selected = true;
+
+            city = val;
+          });
+          getDataByCity(
+            city,
+          );
+        },
+      ),
+    );
   }
 
   Widget selectServiceTab(context) {

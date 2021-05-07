@@ -22,4 +22,23 @@ class APIServices {
     print((json.decode(res.data))['data'].length);
     return (json.decode(res.data))['data'];
   }
+
+  getTotalCases() async {
+    Response res = await Dio().get(
+      "https://Twitter.devilunknown.repl.co/stats",
+    );
+    return res.data;
+  }
+
+  getRecordByCity(String type, String state, String city) async {
+    Response res = await Dio().post(
+      "https://Twitter.devilunknown.repl.co/$city",
+      data: {
+        "state": state,
+        "requirement": type,
+      },
+    );
+    print((json.decode(res.data))['data'].length);
+    return (json.decode(res.data))['data'];
+  }
 }
