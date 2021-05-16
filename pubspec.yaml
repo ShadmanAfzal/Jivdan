@@ -20,6 +20,9 @@ dependencies:
   intl:
   velocity_x: ^3.0.0
   url_strategy: ^0.2.0
+  animated_text_kit: ^4.2.1
+  web_scraper: ^0.1.4
+  syncfusion_flutter_charts: ^19.1.63
   
 assets:
     - assets/  

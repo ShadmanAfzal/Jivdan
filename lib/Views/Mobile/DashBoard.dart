@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
+import 'package:jivandaan/CovidDataDashboard/constants.dart';
+import 'package:jivandaan/CovidDataDashboard/getData.dart';
+import 'package:jivandaan/CovidDataDashboard/uiForMobile.dart';
 import 'package:jivandaan/Services/APIServices.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -48,6 +51,13 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
   void initState() {
     getData();
     super.initState();
+    getVacData().then((value) {
+      setState(() {
+        vacData = value.toString();
+      });
+    }
+    );
+
   }
 
   getData() async {
@@ -309,7 +319,8 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                   height: 10,
                 ),
                 card(context),
-                activeCases(context, cases),
+               //activeCases(context, data)
+               webMobileUI(context),
                 SizedBox(
                   height: 30,
                 ),
