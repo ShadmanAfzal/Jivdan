@@ -338,158 +338,6 @@ class _DetailsState extends State<Details> {
     );
   }
 
-  // Widget tags(context) {
-  //   return Container(
-  //     width: MediaQuery.of(context).size.width / 4,
-  //     child: Padding(
-  //       padding: const EdgeInsets.all(8.0),
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //         children: [
-  //           SelectableText(
-  //             "Tags",
-  //             style: GoogleFonts.poppins(
-  //                 fontSize: 22,
-  //                 fontWeight: FontWeight.w600,
-  //                 color: CustomColor.textColor),
-  //           ),
-  //           SizedBox(
-  //             height: 15,
-  //           ),
-  //           MaterialButton(
-  //             elevation: 0,
-  //             onPressed: () {
-  //               setState(() {
-  //                 verified[0] = true;
-  //                 verified[1] = false;
-  //                 verified[2] = false;
-  //               });
-  //             },
-  //             hoverColor: Colors.transparent,
-  //             focusColor: Colors.transparent,
-  //             hoverElevation: 0,
-  //             color: verified[0] ? Color(0xffC1FFC0) : Colors.transparent,
-  //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(40),
-  //             ),
-  //             child: Container(
-  //               width: 120,
-  //               height: 40,
-  //               child: Row(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   Icon(
-  //                     Icons.check_box_rounded,
-  //                     color: CustomColor.textColor,
-  //                     size: 18,
-  //                   ),
-  //                   SizedBox(width: 5),
-  //                   SelectableText(
-  //                     "Verified",
-  //                     style: TextStyle(
-  //                       fontSize: 14,
-  //                       fontWeight: FontWeight.w600,
-  //                       color: CustomColor.textColor,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //           SizedBox(
-  //             height: 15,
-  //           ),
-  //           MaterialButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 verified[1] = true;
-  //                 verified[0] = false;
-  //                 verified[2] = false;
-  //               });
-  //             },
-  //             elevation: 0,
-  //             hoverElevation: 0,
-  //             hoverColor: Colors.transparent,
-  //             focusColor: Colors.transparent,
-  //             color: verified[1] ? Color(0xffC1FFC0) : Colors.transparent,
-
-  //             // color: Color(0xffC1FFC0),
-  //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(40),
-  //             ),
-  //             child: Container(
-  //               width: 120,
-  //               height: 40,
-  //               child: Row(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   Icon(
-  //                     CupertinoIcons.phone_fill_badge_plus,
-  //                     color: CustomColor.textColor,
-  //                     size: 18,
-  //                   ),
-  //                   SizedBox(width: 5),
-  //                   SelectableText(
-  //                     "Not Available",
-  //                     style: TextStyle(
-  //                       fontSize: 14,
-  //                       fontWeight: FontWeight.w600,
-  //                       color: CustomColor.textColor,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //           SizedBox(
-  //             height: 15,
-  //           ),
-  //           MaterialButton(
-  //             onPressed: () {
-  //               setState(() {
-  //                 verified[2] = true;
-  //                 verified[1] = false;
-  //                 verified[0] = false;
-  //               });
-  //             },
-  //             elevation: 0,
-  //             hoverColor: Colors.transparent,
-  //             hoverElevation: 0,
-  //             focusColor: Colors.transparent,
-  //             color: verified[2] ? Color(0xffC1FFC0) : Colors.transparent,
-  //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(40),
-  //             ),
-  //             child: Container(
-  //               width: 120,
-  //               height: 40,
-  //               child: Row(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 children: [
-  //                   Icon(
-  //                     Icons.cancel_rounded,
-  //                     color: CustomColor.textColor,
-  //                     size: 18,
-  //                   ),
-  //                   SizedBox(width: 5),
-  //                   SelectableText(
-  //                     "Not Verified",
-  //                     style: TextStyle(
-  //                       fontSize: 14,
-  //                       fontWeight: FontWeight.w600,
-  //                       color: CustomColor.textColor,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget content(context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -611,7 +459,6 @@ class _DetailsState extends State<Details> {
                                                 paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
-                                              // fontWeight: FontWeight.w500,
                                               color: CustomColor.textColor,
                                             ),
                                           ),
@@ -651,7 +498,6 @@ class _DetailsState extends State<Details> {
                                                 paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
-                                              // fontWeight: FontWeight.w500,
                                               color: CustomColor.textColor,
                                             ),
                                           ),
@@ -691,7 +537,6 @@ class _DetailsState extends State<Details> {
                                                 paste: false),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
-                                              // fontWeight: FontWeight.w500,
                                               color: CustomColor.textColor,
                                             ),
                                           ),
@@ -765,7 +610,6 @@ class _DetailsState extends State<Details> {
                                                     fontWeight: FontWeight.w500,
                                                     color:
                                                         CustomColor.textColor,
-                                                    // color: Colors.black,
                                                   ),
                                                 ),
                                               ],
@@ -812,41 +656,46 @@ class _DetailsState extends State<Details> {
 
   Widget dropDownSelector(context) {
     return Container(
-      // decoration: BoxDecoration(
-      //   // borderRadius: BorderRadius.circular(6),
-      //   // color: Color(0xffAD87FF),
-      // ),
-      child: DropdownButton(
-        elevation: 0,
-        hint: Text(
-          "Select your city",
-          style: GoogleFonts.poppins(
-            fontSize: 15.5,
-            fontWeight: FontWeight.w500,
-          ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(
+          color: CustomColor.textColor,
         ),
-        underline: Container(),
-        value: selected ? city : null,
-        items: SearchCity().selectCity(widget.state).map((String value) {
-          return new DropdownMenuItem<String>(
-            value: value,
-            child: new Text(value,
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  // fontWeight: FontWeight.w500,
-                  color: CustomColor.textColor,
-                )),
-          );
-        }).toList(),
-        onChanged: (val) {
-          setState(() {
-            selected = true;
-            city = val;
-          });
-          getDataByCity(
-            city,
-          );
-        },
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: DropdownButton(
+          elevation: 0,
+          hint: Text(
+            "Select your city",
+            style: GoogleFonts.poppins(
+              fontSize: 15.5,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          iconEnabledColor: CustomColor.textColor,
+          underline: Container(),
+          value: selected ? city : null,
+          items: SearchCity().selectCity(widget.state).map((String value) {
+            return new DropdownMenuItem<String>(
+              value: value,
+              child: new Text(value,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: CustomColor.textColor,
+                  )),
+            );
+          }).toList(),
+          onChanged: (val) {
+            setState(() {
+              selected = true;
+              city = val;
+            });
+            getDataByCity(
+              city,
+            );
+          },
+        ),
       ),
     );
   }

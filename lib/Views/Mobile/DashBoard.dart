@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:jivandaan/Config/colors.dart';
-import 'package:jivandaan/CovidDataDashboard/constants.dart';
-import 'package:jivandaan/CovidDataDashboard/getData.dart';
-import 'package:jivandaan/CovidDataDashboard/uiForMobile.dart';
 import 'package:jivandaan/Services/APIServices.dart';
+import 'package:jivandaan/Views/constants.dart';
+import 'package:jivandaan/Views/uiForMobile.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import '../getData.dart';
 
 class DashBoardMobile extends StatefulWidget {
   @override
@@ -53,32 +54,42 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
     super.initState();
     getDataCovid().then((value) {
       setState(() {
-        activeCase=value['activeCases'].toString();
-        totalCase=value['totalCases'].toString();
-        recover=value['recovered'].toString();
-        deaths=value['deaths'].toString();
-        newActiveCase=value['activeCasesNew'].toString();
-        newDeaths=value['deathsNew'].toString();
-        newRecover=value['recoveredNew'].toString();
-        perCentActive=((int.parse(activeCase)/int.parse(totalCase))*100).toStringAsPrecision(3);
-        perCentDeaths=((int.parse(deaths)/int.parse(totalCase))*100).toStringAsPrecision(3);
-        perCentRecovered=((int.parse(recover)/int.parse(totalCase))*100).toStringAsPrecision(3);
-        chartData= [
-          chartData1(title:'TotalCase', x: int.parse(totalCase),clr: Color(0xFF6E7191)),
-          chartData1(title:'ActiveCases', x: int.parse(activeCase),clr: Color(0xFF0066FF)),
-          chartData1(title:'Recovered', x: int.parse(recover),clr: Color(0xFF05E945)),
-          chartData1(title:'Deaths', x: int.parse(deaths),clr: Color(0xFFFF0000)),
+        activeCase = value['activeCases'].toString();
+        totalCase = value['totalCases'].toString();
+        recover = value['recovered'].toString();
+        deaths = value['deaths'].toString();
+        newActiveCase = value['activeCasesNew'].toString();
+        newDeaths = value['deathsNew'].toString();
+        newRecover = value['recoveredNew'].toString();
+        perCentActive = ((int.parse(activeCase) / int.parse(totalCase)) * 100)
+            .toStringAsPrecision(3);
+        perCentDeaths = ((int.parse(deaths) / int.parse(totalCase)) * 100)
+            .toStringAsPrecision(3);
+        perCentRecovered = ((int.parse(recover) / int.parse(totalCase)) * 100)
+            .toStringAsPrecision(3);
+        chartData = [
+          ChartData1(
+              title: 'TotalCase',
+              x: int.parse(totalCase),
+              clr: Color(0xFF6E7191)),
+          ChartData1(
+              title: 'ActiveCases',
+              x: int.parse(activeCase),
+              clr: Color(0xFF0066FF)),
+          ChartData1(
+              title: 'Recovered',
+              x: int.parse(recover),
+              clr: Color(0xFF05E945)),
+          ChartData1(
+              title: 'Deaths', x: int.parse(deaths), clr: Color(0xFFFF0000)),
         ];
       });
-    }
-    );
+    });
     getVacData().then((value) {
       setState(() {
         vacData = value.toString();
       });
-    }
-    );
-
+    });
   }
 
   getData() async {
@@ -340,8 +351,7 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                   height: 10,
                 ),
                 card(context),
-               //activeCases(context, data)
-               webMobileUI(context),
+                webMobileUI(context),
                 SizedBox(
                   height: 30,
                 ),
@@ -446,7 +456,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
             ),
             child: Container(
               height: 40,
-              // width: 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(45),
                 color: Color(0xffAD87FF),
@@ -495,7 +504,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
             crossAxisCount: 3,
             children: [
               for (String city in majorCities)
-                // ignore: deprecated_member_use
                 FlatButton(
                   onPressed: () {
                     print(isSelected);
@@ -605,18 +613,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                           color: CustomColor.textColor,
                                         ),
                                       ),
-                                      // Icon(
-                                      //   Icons.arrow_drop_up,
-                                      //   size: 18,
-                                      //   color: Colors.red.shade700,
-                                      // ),
-                                      // Text(
-                                      //   "+ 9.8 % ",
-                                      //   style: TextStyle(
-                                      //     fontSize: 12.5,
-                                      //     color: Colors.red.shade700,
-                                      //   ),
-                                      // )
                                     ],
                                   ),
                                   SizedBox(
@@ -637,15 +633,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  // Text(
-                                  //   "+ 275,414",
-                                  //   textAlign: TextAlign.center,
-                                  //   style: GoogleFonts.poppins(
-                                  //     fontSize: 16,
-                                  //     fontWeight: FontWeight.w500,
-                                  //     color: Colors.red.shade700,
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
@@ -677,18 +664,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                           color: CustomColor.textColor,
                                         ),
                                       ),
-                                      // Icon(
-                                      //   Icons.arrow_drop_up,
-                                      //   size: 18,
-                                      //   color: Colors.red.shade700,
-                                      // ),
-                                      // Text(
-                                      //   "+ 9.8 % ",
-                                      //   style: TextStyle(
-                                      //     fontSize: 12.5,
-                                      //     color: Colors.red.shade700,
-                                      //   ),
-                                      // )
                                     ],
                                   ),
                                   SizedBox(
@@ -711,15 +686,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  // Text(
-                                  //   "+ 275,414",
-                                  //   textAlign: TextAlign.center,
-                                  //   style: GoogleFonts.poppins(
-                                  //     fontSize: 16,
-                                  //     fontWeight: FontWeight.w500,
-                                  //     color: Colors.blue.shade700,
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
@@ -753,18 +719,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                           color: CustomColor.textColor,
                                         ),
                                       ),
-                                      // Icon(
-                                      //   Icons.arrow_drop_up,
-                                      //   size: 40,
-                                      //   color: Colors.green.shade700,
-                                      // ),
-                                      // Text(
-                                      //   "+ 9.8 % ",
-                                      //   style: TextStyle(
-                                      //     fontSize: 14,
-                                      //     color: Colors.green.shade700,
-                                      //   ),
-                                      // )
                                     ],
                                   ),
                                   SizedBox(
@@ -785,15 +739,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                   SizedBox(
                                     height: 5,
                                   ),
-                                  // Text(
-                                  //   "+ 275,414",
-                                  //   textAlign: TextAlign.center,
-                                  //   style: GoogleFonts.poppins(
-                                  //     fontSize: 18,
-                                  //     fontWeight: FontWeight.w500,
-                                  //     color: Colors.green.shade700,
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
@@ -825,18 +770,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                           color: CustomColor.textColor,
                                         ),
                                       ),
-                                      // Icon(
-                                      //   Icons.arrow_drop_up,
-                                      //   size: 40,
-                                      //   color: Colors.red.shade700,
-                                      // ),
-                                      // Text(
-                                      //   "+ 9.8 % ",
-                                      //   style: TextStyle(
-                                      //     fontSize: 14,
-                                      //     color: Colors.red.shade700,
-                                      //   ),
-                                      // )
                                     ],
                                   ),
                                   SizedBox(
@@ -857,15 +790,6 @@ class _DashBoardMobileState extends State<DashBoardMobile> {
                                   SizedBox(
                                     height: 30,
                                   ),
-                                  // Text(
-                                  //   "+ 275,414",
-                                  //   textAlign: TextAlign.center,
-                                  //   style: GoogleFonts.poppins(
-                                  //     fontSize: 18,
-                                  //     fontWeight: FontWeight.w500,
-                                  //     color: CustomColor.textColor,
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),

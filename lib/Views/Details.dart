@@ -257,42 +257,48 @@ class _DetailsWebState extends State<DetailsWeb> {
 
   Widget dropDownSelector(context) {
     return Container(
-      // decoration: BoxDecoration(
-      //   // borderRadius: BorderRadius.circular(6),
-      //   // color: Color(0xffAD87FF),
-      // ),
-      child: DropdownButton(
-        elevation: 0,
-        hint: Text(
-          "Select your city",
-          style: GoogleFonts.poppins(
-            fontSize: 15.5,
-            fontWeight: FontWeight.w500,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: CustomColor.textColor,
+          )
+          // color: Color(0xffAD87FF),
           ),
-        ),
-        underline: Container(),
-        value: selected ? city : null,
-        items: SearchCity().selectCity(widget.state).map((String value) {
-          return new DropdownMenuItem<String>(
-            value: value,
-            child: new Text(value,
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  // fontWeight: FontWeight.w500,
-                  color: CustomColor.textColor,
-                )),
-          );
-        }).toList(),
-        onChanged: (val) {
-          setState(() {
-            selected = true;
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: DropdownButton(
+          elevation: 0,
+          hint: Text(
+            "Select your city",
+            style: GoogleFonts.poppins(
+              fontSize: 15.5,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          underline: Container(),
+          value: selected ? city : null,
+          items: SearchCity().selectCity(widget.state).map((String value) {
+            return new DropdownMenuItem<String>(
+              value: value,
+              child: new Text(value,
+                  style: GoogleFonts.poppins(
+                    fontSize: 15,
+                    // fontWeight: FontWeight.w500,
+                    color: CustomColor.textColor,
+                  )),
+            );
+          }).toList(),
+          onChanged: (val) {
+            setState(() {
+              selected = true;
 
-            city = val;
-          });
-          getDataByCity(
-            city,
-          );
-        },
+              city = val;
+            });
+            getDataByCity(
+              city,
+            );
+          },
+        ),
       ),
     );
   }
@@ -699,7 +705,7 @@ class _DetailsWebState extends State<DetailsWeb> {
                                             SelectableText(
                                               data[index]['phone'].toString(),
                                               style: GoogleFonts.poppins(
-                                                fontSize: 16,
+                                                fontSize: 15,
                                                 color: CustomColor.textColor,
                                               ),
                                             ),

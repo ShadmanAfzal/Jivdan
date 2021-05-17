@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivandaan/Config/colors.dart';
-import 'package:jivandaan/CovidDataDashboard/uiForWeb.dart';
 import 'package:jivandaan/Services/APIServices.dart';
+import 'package:jivandaan/Views/uiForWeb.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 
 class DashBoard extends StatefulWidget {
   @override
@@ -14,7 +13,6 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-
   List<bool> isSelected = [true, false, false, false];
   bool isloading = false;
   List<String> majorCities = [
@@ -307,7 +305,6 @@ class _DashBoardState extends State<DashBoard> {
                       ),
                       searchBar(context, width),
                       card(context, width),
-                    //  activeCases(context, cases),
                       webUI(context),
                       SizedBox(
                         height: 30,
