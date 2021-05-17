@@ -19,22 +19,29 @@ Widget webMobileUI(context)
             ),
           ),
         ),
-        Container(
+        Padding(
+        padding: EdgeInsets.fromLTRB(10, 15, 10, 15),
+        child:Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
           color: Color(0XFFEFF0F6),
+        ),
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+                      padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                       child: Container(
                         height: 100.0,
                         width: MediaQuery
                             .of(context)
                             .size
-                            .width / 2,
+                            .width / 4,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(
@@ -76,7 +83,7 @@ Widget webMobileUI(context)
                   ),
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+                      padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                       child: kContainer(t1: 'Active ',
                         p1: perCentActive,
                         i1: 'down',
@@ -89,10 +96,11 @@ Widget webMobileUI(context)
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+                      padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
                       child: kContainer(t1: 'Recovered ',
                           p1: perCentRecovered,
                           i1: 'up',
@@ -104,7 +112,7 @@ Widget webMobileUI(context)
                   ),
                   Flexible(
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(10, 15, 15, 20),
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                       child: kContainer(t1: 'Decreased ',
                         p1: perCentDeaths,
                         i1: 'down',
@@ -116,16 +124,16 @@ Widget webMobileUI(context)
                   ),
                 ],
               ),
-              SizedBox(
-                height: 5,
-              )
             ],
           ),
         ),
-        SizedBox(
-          height: 23,
         ),
-        Container(
+        SizedBox(
+          height: 10,
+        ),
+       Padding(
+        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+child:Container(
           decoration: BoxDecoration(
             color: Color(0XFFEFF0F6),
             borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -173,6 +181,7 @@ Widget webMobileUI(context)
             ],
           ),
         ),
+       ),
         SizedBox(height: 5),
         TExtButton(),
         SizedBox(height: 50),

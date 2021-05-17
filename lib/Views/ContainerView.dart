@@ -10,7 +10,7 @@ double f2=18;
 double f3=24;
 double f4=13;
 double hBox1=40;
-double hBox2=25;
+double hbox2=9.89;
 double rCircle=16;
 class kContainer extends StatelessWidget {
   kContainer({ this.t1,this.i1, this.p1, this.text1String,  this.text2String,  this.colors,  this.color1});
@@ -31,13 +31,13 @@ class kContainer extends StatelessWidget {
        height=100.32;
        rCircle=8;
        hBox1=5;
+       hbox2=1.2;
        f1=20;
        f2=16;
       }
-    return
-      Container(
+    return Container(
      height: height,
-      width: weight,
+     width: weight/2,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(
@@ -49,11 +49,8 @@ class kContainer extends StatelessWidget {
           SizedBox(height: hBox1,),
           covidStats_Row(title: t1,percent: p1,img: i1,colors2: color1,),
           SizedBox(height: hBox1),
-        FittedBox(
-            fit:BoxFit.fill,
-            child:AnimatedTextKit(animatedTexts:[TypewriterAnimatedText
-            ('$text1String',
-            textStyle:TextStyle(
+            Text('$text1String',
+            style:TextStyle(
               color:colors,
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w600,
@@ -61,22 +58,18 @@ class kContainer extends StatelessWidget {
               fontSize: f1,
             ),
           ),
-          ],
-          ),
-        ),
-   SizedBox(height: 9.89),
+      //  ),
+   SizedBox(height: hbox2),
       FittedBox(
         fit: BoxFit.fill,
-          child:AnimatedTextKit(animatedTexts: [TypewriterAnimatedText('+$text2String',
-          textStyle:TextStyle(
+         child:Text('+$text2String',
+          style:TextStyle(
                 color:colors,
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.75,
                 fontSize: f2,
               )
-          ),
-        ],
       ),
       ),
         ]
@@ -94,39 +87,41 @@ class covidStats_Row extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery. of(context). size. width;
+    print(width);
     if(width>767);
     else
       {
-        f3=12;
-        f4=10;
+        f3=8;
+        f4=6;
       }
      return Flexible(
     child:Row(
        mainAxisAlignment:MainAxisAlignment.center,
       children: [
-        Text(title,
+        FittedBox(
+        fit: BoxFit.scaleDown,
+        child:Text(title,
           style: TextStyle(
             color: Color(0xFF6E7191),
             letterSpacing: 0.75,
-            fontWeight: FontWeight.w600,
+           fontWeight: FontWeight.w600,
             fontSize: f3,
           ),
+        ),
         ),
      Container(
         child:Image.asset('$img.png',width: 10,height: 10,),
         ),
      FittedBox(
        fit:BoxFit.fill,
-       child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(percent.toString()+'%',
-          textStyle: TextStyle(
+       child: Text(percent.toString()+'%',
+          style: TextStyle(
             color: colors2,
             fontSize: f4,
             wordSpacing: 0.75,
             fontWeight: FontWeight.w600,
             fontStyle: FontStyle.normal,
           ),
-        ),
-      ]
         ),
      ),
       ],

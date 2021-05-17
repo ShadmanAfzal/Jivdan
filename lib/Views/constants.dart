@@ -80,7 +80,7 @@ class RowElements extends StatelessWidget {
           title,
           style: TextStyle(
             color: Colors.black,
-            fontSize: 10,
+            fontSize: 8,
             letterSpacing: 0.75,
             fontStyle: FontStyle.normal,
             fontWeight: FontWeight.w600,
@@ -100,54 +100,42 @@ class PieChart extends StatelessWidget {
       // mainAxisAlignment: MainAxisAlignment.center,
       alignment: WrapAlignment.center,
       children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(30, 0, 10, 0),
-          child: SfCircularChart(
-            series: <PieSeries<ChartData1, String>>[
-              PieSeries<ChartData1, String>(
-                // Assign the chartData to the data source.
-                selectionBehavior: SelectionBehavior(enable: true),
-                dataSource: chartData,
-                pointColorMapper: (ChartData1 data, _) => data.clr,
-                xValueMapper: (ChartData1 data, _) => data.title,
-                yValueMapper: (ChartData1 data, _t) => data.x,
-                name: 'Cases',
-                radius: radius,
-                dataLabelMapper: (ChartData1 data, _) =>
-                    data.title + '\n' + data.x.toString(),
-                dataLabelSettings: DataLabelSettings(isVisible: true),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-          //padding:EdgeInsets.fromLTRB(20, 0, 10, 0),
-          child: Container(
-            child: Column(
-              children: [
-                RowElements(
-                  cl: Color(0xFF6E7191),
-                  title: ' TotalCases ',
-                ),
-                RowElements(
-                  cl: Color(0xFF0066FF),
-                  title: ' ActiveCases',
-                ),
-                RowElements(
-                  cl: Color(0xFF05E945),
-                  title: '  Recovered ',
-                ),
-                RowElements(
-                  cl: Color(0xFFFF0000),
-                  title: '  Deaths       ',
-                ),
-              ],
+        SfCircularChart(
+          series: <PieSeries<ChartData1, String>>[
+            PieSeries<ChartData1, String>(
+              // Assign the chartData to the data source.
+              selectionBehavior: SelectionBehavior(enable: true),
+              dataSource: chartData,
+              pointColorMapper: (ChartData1 data, _) => data.clr,
+              xValueMapper: (ChartData1 data, _) => data.title,
+              yValueMapper: (ChartData1 data, _t) => data.x,
+              name: 'Cases',
+              radius: radius,
+              dataLabelMapper: (ChartData1 data, _) =>
+                  data.title + '\n' + data.x.toString(),
+              dataLabelSettings: DataLabelSettings(isVisible: true),
             ),
-          ),
+          ],
         ),
-        SizedBox(
-          height: 50,
+        Column(
+          children: [
+            RowElements(
+              cl: Color(0xFF6E7191),
+              title: ' TotalCases ',
+            ),
+            RowElements(
+              cl: Color(0xFF0066FF),
+              title: ' ActiveCases',
+            ),
+            RowElements(
+              cl: Color(0xFF05E945),
+              title: '  Recovered ',
+            ),
+            RowElements(
+              cl: Color(0xFFFF0000),
+              title: '  Deaths       ',
+            ),
+          ],
         ),
       ],
     );

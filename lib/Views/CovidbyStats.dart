@@ -113,14 +113,6 @@ class ViewCovidStat extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(padding[0], padding[1], padding[2], padding[3]),
                       child: Table(
                         columnWidths: {
-                        /*  0: FlexColumnWidth(1.5),
-                          1: FlexColumnWidth(1.0),
-                          2: FlexColumnWidth(1.0),
-                          3: FlexColumnWidth(1.0),
-                          4: FlexColumnWidth(1.0),
-                          5: FlexColumnWidth(1.2),
-                          6: FlexColumnWidth(1.0),
-                          7: FlexColumnWidth(1.2),*/
                           0: FlexColumnWidth(10.5),
                           1: FlexColumnWidth(5.0),
                           2: FlexColumnWidth(5.0),
@@ -172,30 +164,30 @@ class ViewCovidStat extends StatelessWidget {
                           for( var i in stateName)
                             TableRow(
                               children: [
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
-                                    i['region'], textStyle:kTextStyle2,textAlign: TextAlign.center,),] )),
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                Center(child:Text(
+                                    i['region'], style:kTextStyle2,textAlign: TextAlign.center,),),
+                                Center(child: Text(
                                     i['activeCases'].toString(),
-                                    textStyle: kTextStyle2)]),),
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                    style: kTextStyle2)),
+                                Center(child: Text(
                                     i['newInfected'].toString(),
-                                    textStyle: kTextStyle2)]),),
+                                    style: kTextStyle2)),
                                 Center(
-                                    child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(i['recovered'].toString(),
-                                        textStyle: kTextStyle2)])),
-                                Center(child:AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                    child: Text(i['recovered'].toString(),
+                                        style: kTextStyle2)),
+                                Center(child:Text(
                                     i['newRecovered'].toString(),
-                                    textStyle: kTextStyle2)])),
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                    style: kTextStyle2)),
+                                Center(child:Text(
                                     i['deceased'].toString(),
                                     textAlign: TextAlign.center,
-                                    textStyle: kTextStyle2)])),
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                    style: kTextStyle2)),
+                                Center(child: Text(
                                     i['newDeceased'].toString(),
-                                    textStyle: kTextStyle2)])),
-                                Center(child: AnimatedTextKit(animatedTexts: [TypewriterAnimatedText(
+                                   style: kTextStyle2)),
+                                Center(child:Text(
                                     i['totalInfected'].toString(),
-                                    textStyle: kTextStyle2)])),
+                                    style: kTextStyle2)),
                               ],
                             ),
                         ],
